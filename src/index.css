@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  margin: 0px;
+  border: 0px;
+  box-sizing: border-box;
+}
+
+.card{
+  box-shadow: 2px 2px 6px #008000;
+}
+.card:hover:not(.no-scale){
+  scale: 1.02;
+}
+
+
+.custom-card-image .card.image-full:before {
+  border-radius: 0.5rem;
+  opacity: 0.45;
+}
+.visit-profile{
+  box-shadow: 2px 2px 0px #008000;
+}
