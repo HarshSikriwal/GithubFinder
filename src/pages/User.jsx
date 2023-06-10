@@ -1,4 +1,4 @@
-import {FaCodepen, FaStore, FaUserFriends, FaUsers} from 'react-icons/fa'
+
 import {useEffect, useContext} from "react"
 
 import Spinner from '../components/layouts/Spinner'
@@ -9,25 +9,20 @@ import BackToSearch from '../components/users/BackToSearch'
 import VisitGithub from '../components/users/VisitGithub'
 import ProfileCard from '../components/users/ProfileCard'
 import Info from '../components/users/Info'
+import RepoList from "../components/repos/RepoList"
+
 
 function User() {
-    const {getUser, user, loading} = useContext(GithubContext)
+    const {getUser,loading, getUserRepos, repos} = useContext(GithubContext)
     const params = useParams()
     useEffect(() => {getUser(params.login)},[])
+    useEffect(() => {getUserRepos(params.login)},[])
 
 
     if(loading){
       return <Spinner />
     }
-    const {
-      
-      followers,
-      following,
-      public_repos,
-      public_gists,
-      
-      
-    } = user
+    
   return (
     <>
       <div className="w-full mx-auto lg:w-10/12" >
@@ -43,7 +38,7 @@ function User() {
             <Stats />
           </div>
         </div>
-        
+        <RepoList repos={repos} />  
       </div>
         
     
