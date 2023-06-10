@@ -1,13 +1,14 @@
 import {FaCodepen, FaStore, FaUserFriends, FaUsers} from 'react-icons/fa'
 import {useEffect, useContext} from "react"
-import { Link } from 'react-router-dom'
+
 import Spinner from '../components/layouts/Spinner'
 import GithubContext from "../context/github/GithubContext"
 import { useParams } from "react-router-dom"
-import Stats from '../components/layouts/Stats'
-import BackToSearch from '../components/layouts/assets/BackToSearch'
-import VisitGithub from '../components/layouts/assets/VisitGithub'
-import ProfileCard from '../components/layouts/assets/ProfileCard'
+import Stats from '../components/users/Stats'
+import BackToSearch from '../components/users/BackToSearch'
+import VisitGithub from '../components/users/VisitGithub'
+import ProfileCard from '../components/users/ProfileCard'
+import Info from '../components/users/Info'
 
 function User() {
     const {getUser, user, loading} = useContext(GithubContext)
@@ -19,16 +20,12 @@ function User() {
       return <Spinner />
     }
     const {
-      name,
-      type,
-      avatar_url,
-      bio,
-      login,
+      
       followers,
       following,
       public_repos,
       public_gists,
-      hireable,
+      
       
     } = user
   return (
@@ -40,17 +37,7 @@ function User() {
           <ProfileCard />
           <div className='xl:col-span-2'>
             <div className="mb-6">
-              <h1 className='text-3xl card-title'>
-                {name}
-                <div className="ml-2 mr-1 mt-1 badge badge-success">
-                  {type}
-                </div>
-                {hireable && (
-                  <div className="mx-1 mt-1 badge badge-info">Hireable</div>
-
-                )}
-              </h1>
-              <p className='mt-1'>{bio}</p>
+              <Info />
               <VisitGithub />
             </div>
             <Stats />
