@@ -35,7 +35,7 @@ import AlertContext from "../../context/github/alert/AlertContext"
                             className={`w-full input-lg rounded-md border-solid border-2  pr-40 transition-all duration-500
                                       text-[#008000] placeholder-[#800080]/30 ${text ? 'border-[#008000]' : 'border-[#800080]'}
                                         focus:outline-none`}
-                            placeholder="Search"
+                            placeholder="Type the username"
                             value={text}
                             onChange={handleChange} 
                         />

@@ -10,15 +10,16 @@ import VisitGithub from '../components/users/VisitGithub'
 import ProfileCard from '../components/users/ProfileCard'
 import Info from '../components/users/Info'
 import RepoList from "../components/repos/RepoList"
+import GithubContributions from "../components/users/GithubContributions"
 
 
 function User() {
-    const {getUser,loading, getUserRepos, repos} = useContext(GithubContext)
+    const {getUser,loading, getUserRepos, repos,user} = useContext(GithubContext)
     const params = useParams()
     useEffect(() => {getUser(params.login)},[])
     useEffect(() => {getUserRepos(params.login)},[])
 
-
+    const {login}=user
     if(loading){
       return <Spinner />
     }
@@ -36,6 +37,7 @@ function User() {
               <VisitGithub />
             </div>
             <Stats />
+            <GithubContributions login={login} />
           </div>
         </div>
         <RepoList repos={repos} />  

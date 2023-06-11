@@ -1,8 +1,19 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import GithubContext from "../../context/github/GithubContext"
 function Stats() {
   const {user} = useContext(GithubContext)
-  const {location,blog,twitter_username} =user
+  const {location,blog,twitter_username} = user
+  const [newBlog,setNewBlog]=useState('')
+  useEffect(()=>{
+    if (!blog) return
+    if (blog.startsWith('http')){
+      setNewBlog(blog) 
+      return
+    }
+    setNewBlog(`https://${blog}`)
+  },[blog])
+  
+  
   return (
     <div className="w-full rounded-lg shadow-md bg-[#008000]/20 stats divide-solid divide-white">
       {location && (
@@ -14,7 +25,7 @@ function Stats() {
         <div className="stat"><div className="stat-title text-md text-[#800080]/80">
           Website
           </div>
-          <div className="stat-value text-lg"><a href={`${blog}`} target='blank' rel='noreferrer' 
+          <div className="stat-value text-lg"><a href={`${newBlog}`} target='blank' rel='noreferrer' 
             className='font-semibold text-[#800080]'>{blog}</a></div>
           </div>
       )}
