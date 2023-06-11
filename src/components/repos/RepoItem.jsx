@@ -10,7 +10,7 @@ function RepoItem({repo}) {
     } = repo
   return (
     <a href={html_url}>
-    <div className='mb-2 rounded-md card bg-[#800080]/20 '>
+    <div className='mb-2 rounded-md card bg-[#cce6cc] '>
         <div className="card-body">
             <h3 className="mb-2 text-2xl font-semibold">
                 {name}
