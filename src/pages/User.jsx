@@ -11,13 +11,21 @@ import ProfileCard from '../components/users/ProfileCard'
 import Info from '../components/users/Info'
 import RepoList from "../components/repos/RepoList"
 import GithubContributions from "../components/users/GithubContributions"
-
+import { getUserAndRepos } from "../context/github/GithubAction"
 
 function User() {
-    const {getUser,loading, getUserRepos, repos,user} = useContext(GithubContext)
+    const {loading, repos, user, dispatch} = useContext(GithubContext)
     const params = useParams()
-    useEffect(() => {getUser(params.login)},[])
-    useEffect(() => {getUserRepos(params.login)},[])
+
+    useEffect(() => {
+      dispatch({type:'SET_LOADING'})
+      const getUserData=async() => {
+        const userData = await getUserAndRepos(params.login)
+        dispatch({type:'GET_USER_AND_REPOS', payload: userData})
+      }
+
+      getUserData()
+    },[dispatch,params.login])
 
     const {login}=user
     if(loading){
